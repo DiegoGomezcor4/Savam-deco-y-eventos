@@ -78,8 +78,8 @@ nav ul li a:hover { color: var(--dorado); }
 
 /* La diapositiva se adapta al contenedor */
 .slide {
-    width: 90%; 
-    height: 90%; /* Ocupa el 100% de los 75vh del padre */
+    width: 100%; 
+    height: 100%; /* Ocupa el 100% de los 75vh del padre */
     background-size: cover; /* Recorta la imagen para llenar el espacio sin deformar */
     background-position: center; /* Mantiene el centro de la foto siempre visible */
     background-repeat: no-repeat;
