@@ -1,0 +1,193 @@
+:root {
+    --dorado: #d4af37;
+    --negro: #1a1a1a;
+    --blanco: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: var(--negro);
+    color: var(--blanco);
+    scroll-behavior: smooth;
+}
+
+/* Navbar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: rgba(0,0,0,0.9);
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo img {
+    height: 90px;          /* Ajusta el tamaño a tu gusto */
+    width: 90px;           /* Para un círculo, ancho y alto deben ser iguales */
+    object-fit: cover;     /* Evita que la imagen se deforme */
+    border-radius: 50%;    /* El truco para el círculo */
+    border: 2px solid var(--dorado); /* Opcional: un borde dorado para que resalte */
+}
+
+nav ul { display: flex; list-style: none; }
+nav ul li a {
+    color: var(--blanco);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.3s;
+}
+nav ul li a:hover { color: var(--dorado); }
+
+/* Carrusel */
+.carousel { height: 120vh; overflow: hidden; position: relative; }
+.slide {
+    width: 100vw; height: 90vh;
+    background-size: cover;
+    background-position: center;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.slide.active { display: flex; }
+.overlay { background: rgba(0,0,0,0.5); padding: 20px; border: 2px solid var(--dorado); }
+
+/* Servicios y Galería */
+.section-title { text-align: center; color: var(--dorado); margin: 50px 0; }
+.services-grid, .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0 5%;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.service-card {
+    background: #252525;
+    padding: 30px;
+    text-align: center;
+    border-bottom: 3px solid var(--dorado);
+}
+.service-card i { font-size: 40px; color: var(--dorado); }
+
+/* Formulario */
+.contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0 5% 50px;
+}
+input, textarea {
+    margin-bottom: 15px;
+    padding: 12px;
+    background: #333;
+    border: 1px solid var(--dorado);
+    color: white;
+}
+button {
+    background: var(--dorado);
+    color: black;
+    border: none;
+    padding: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 35px;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1); /* Se agranda un poquito al pasar el mouse */
+    background-color: #128c7e;
+}
+
+/* --- AJUSTES PARA DISPOSITIVOS MÓVILES --- */
+
+@media (max-width: 768px) {
+    /* 1. Menú de Navegación */
+    nav {
+        flex-direction: column; /* Logo arriba, links abajo */
+        padding: 10px;
+    }
+
+    nav ul {
+        padding: 0;
+        margin-top: 10px;
+        flex-wrap: wrap; /* Si son muchos links, se envuelven */
+        justify-content: center;
+    }
+
+    nav ul li a {
+        margin: 0 10px;
+        font-size: 14px;
+    }
+
+    /* 2. Carrusel */
+    .carousel {
+        height: 50vh; /* Más bajo en celular para que no ocupe toda la pantalla */
+        margin-top: 110px; /* Un poco más de espacio porque el nav ahora es más alto */
+    }
+
+    .overlay h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    /* 3. Secciones y Títulos */
+    .section-title {
+        font-size: 1.8rem;
+        margin: 30px 0;
+    }
+
+    /* 4. Grillas (Servicios y Galería) */
+    .services-grid, .gallery-grid {
+        grid-template-columns: 1fr; /* Una sola columna en lugar de tres */
+        gap: 15px;
+        padding: 0 10%;
+    }
+
+    /* 5. Botón WhatsApp */
+    .whatsapp-float {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+        font-size: 28px;
+    }
+
+    /* 6. Formulario */
+    .contact form {
+        width: 90%;
+    }
+}
+
+/* Ajuste para tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .services-grid, .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas en tablets */
+    }
+}

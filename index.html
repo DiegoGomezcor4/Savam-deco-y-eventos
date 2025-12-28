@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savam - Decoración y Eventos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="tulogo.jpeg" alt="Savam Logo">
+            </div>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="carousel">
+        <div class="carousel-container">
+            <div class="slide active" style="background-image: url('/imagenes/evento1.jpg');">
+                <div class="overlay"><h2>Momentos Inolvidables</h2></div>
+            </div>
+            <div class="slide" style="background-image: url('/imagenes/evento2.jpg');">
+                <div class="overlay"><h2>Decoración Exclusiva</h2></div>
+            </div>
+            <div class="slide" style="background-image: url('/imagenes/evento3.jpg');">
+                <div class="overlay"><h2>Decoración Exclusiva</h2></div>
+            </div>
+            <div class="slide" style="background-image: url('/imagenes/evento4.jpg');">
+                <div class="overlay"><h2>Decoración Exclusiva</h2></div>
+            </div>
+            <div class="slide" style="background-image: url('/imagenes/evento5.jpg');">
+                <div class="overlay"><h2>Decoración Exclusiva</h2></div>
+            </div>
+            <div class="slide" style="background-image: url('/imagenes/evento6.jpg');">
+                <div class="overlay"><h2>Decoración Exclusiva</h2></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="services">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-magic"></i>
+                <h3>Ambientación</h3>
+                <p>Creamos atmósferas únicas según tu estilo.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Catering Decorativo</h3>
+                <p>Mesas temáticas que deslumbran.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Planificación Integral</h3>
+                <p>Nos encargamos de cada detalle.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="gallery">
+        <h2 class="section-title">Galería de Eventos</h2>
+        <div class="gallery-grid" id="gallery-container">
+            <div class="photo-item"><img src="/imagenes/evento5.jpg" alt="Evento"></div>
+            <div class="photo-item"><img src="/imagenes/evento6.jpg" alt="Evento"></div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact">
+        <h2 class="section-title">Solicita tu Presupuesto</h2>
+        <form id="whatsapp-form">
+            <input type="text" id="nombre" placeholder="Tu Nombre" required>
+            <input type="text" id="evento" placeholder="Tipo de Evento" required>
+            <textarea id="mensaje" placeholder="Cuéntanos tu idea..." required></textarea>
+            <button type="submit">Enviar a WhatsApp <i class="fab fa-whatsapp"></i></button>
+        </form>
+    </section>
+
+    <a href="https://wa.me/5493794891317" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
