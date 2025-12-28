@@ -60,29 +60,37 @@ nav ul li a {
 nav ul li a:hover { color: var(--dorado); }
 
 /* Carrusel - Ajustado para que no se tape */
+/* El contenedor define el espacio visible */
 .carousel { 
-    height: 75vh;
+    height: 75vh; /* Altura en PC */
     overflow: hidden; 
     position: relative; 
-    margin-top: 85px; /* Evita que el menú tape el carrusel */
+    margin-top: 85px; 
+    width: 100%;
 }
 .carousel-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
     height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
+/* La diapositiva se adapta al contenedor */
 .slide {
-    width: 100%; 
-    height: 100;
-    background-size: cover;
-    background-position: center;
+    width: 90%; 
+    height: 90%; /* Ocupa el 100% de los 75vh del padre */
+    background-size: cover; /* Recorta la imagen para llenar el espacio sin deformar */
+    background-position: center; /* Mantiene el centro de la foto siempre visible */
+    background-repeat: no-repeat;
     display: none;
     align-items: center;
     justify-content: center;
 }
 
-.slide.active { display: flex; }
+.slide.active { 
+    display: flex; 
+}
 .overlay { 
     background: rgba(0,0,0,0.5); 
     padding: 20px; 
