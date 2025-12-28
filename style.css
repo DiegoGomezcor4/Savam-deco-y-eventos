@@ -10,6 +10,7 @@ body {
     background-color: var(--negro);
     color: var(--blanco);
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /* Navbar */
@@ -17,56 +18,92 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
-    background: rgba(0,0,0,0.9);
+    padding: 0.5rem 5%;
+    background: rgba(0,0,0,0.95);
+    position: fixed;
+    top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 2000;
+    box-sizing: border-box;
 }
 
 .logo img {
-    height: 90px;          /* Ajusta el tamaño a tu gusto */
-    width: 90px;           /* Para un círculo, ancho y alto deben ser iguales */
-    object-fit: cover;     /* Evita que la imagen se deforme */
-    border-radius: 50%;    /* El truco para el círculo */
-    border: 2px solid var(--dorado); /* Opcional: un borde dorado para que resalte */
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--dorado);
 }
 
-nav ul { display: flex; list-style: none; }
+.menu-toggle {
+    display: none;
+    color: var(--dorado);
+    font-size: 24px;
+    cursor: pointer;
+}
+
+nav ul { 
+    display: flex; 
+    list-style: none; 
+    margin: 0;
+    padding: 0;
+}
+
 nav ul li a {
     color: var(--blanco);
     text-decoration: none;
-    margin-left: 20px;
+    margin-left: 25px;
+    font-weight: 500;
     transition: 0.3s;
 }
+
 nav ul li a:hover { color: var(--dorado); }
 
-/* Carrusel */
-.carousel { height: 120vh; overflow: hidden; position: relative; }
+/* Carrusel - Ajustado para que no se tape */
+.carousel { 
+    height: 75vh;
+    overflow: hidden; 
+    position: relative; 
+    margin-top: 85px; /* Evita que el menú tape el carrusel */
+}
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
 .slide {
-    width: 100vw; height: 90vh;
+    width: 100%; 
+    height: 100;
     background-size: cover;
     background-position: center;
     display: none;
     align-items: center;
     justify-content: center;
 }
-.slide.active { display: flex; }
-.overlay { background: rgba(0,0,0,0.5); padding: 20px; border: 2px solid var(--dorado); }
 
-/* Servicios y Galería */
+.slide.active { display: flex; }
+.overlay { 
+    background: rgba(0,0,0,0.5); 
+    padding: 20px; 
+    border: 2px solid var(--dorado); 
+    text-align: center;
+}
+
+/* Grillas */
 .section-title { text-align: center; color: var(--dorado); margin: 50px 0; }
 .services-grid, .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     padding: 0 5%;
 }
 
 .gallery-grid img {
     width: 100%;
-    height: auto;
-    max-height: 200px;
+    height: 250px;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 .service-card {
@@ -74,8 +111,11 @@ nav ul li a:hover { color: var(--dorado); }
     padding: 30px;
     text-align: center;
     border-bottom: 3px solid var(--dorado);
+    transition: 0.3s;
 }
-.service-card i { font-size: 40px; color: var(--dorado); }
+
+.service-card:hover { transform: translateY(-5px); }
+.service-card i { font-size: 40px; color: var(--dorado); margin-bottom: 15px; }
 
 /* Formulario */
 .contact form {
@@ -85,13 +125,16 @@ nav ul li a:hover { color: var(--dorado); }
     flex-direction: column;
     padding: 0 5% 50px;
 }
+
 input, textarea {
     margin-bottom: 15px;
     padding: 12px;
     background: #333;
     border: 1px solid var(--dorado);
     color: white;
+    border-radius: 4px;
 }
+
 button {
     background: var(--dorado);
     color: black;
@@ -99,95 +142,70 @@ button {
     padding: 15px;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
 }
 
+button:hover { background: #b8952d; }
+
+/* Botón WhatsApp */
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
     right: 30px;
     background-color: #25d366;
     color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 35px;
-    width: 65px;
-    height: 65px;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 30px;
     z-index: 1000;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
 }
 
-.whatsapp-float:hover {
-    transform: scale(1.1); /* Se agranda un poquito al pasar el mouse */
-    background-color: #128c7e;
-}
-
-/* --- AJUSTES PARA DISPOSITIVOS MÓVILES --- */
-
+/* Móvil */
 @media (max-width: 768px) {
-    /* 1. Menú de Navegación */
-    nav {
-        flex-direction: column; /* Logo arriba, links abajo */
-        padding: 10px;
+    .menu-toggle { display: block; }
+
+    .nav-list {
+        position: fixed;
+        top: 85px;
+        left: -100%;
+        flex-direction: column;
+        background: rgba(0,0,0,0.98);
+        width: 100%;
+        height: 100vh;
+        transition: 0.4s;
+        padding-top: 30px;
     }
 
-    nav ul {
-        padding: 0;
-        margin-top: 10px;
-        flex-wrap: wrap; /* Si son muchos links, se envuelven */
+    .nav-list.active { left: 0; }
+    .nav-list li { margin: 15px 0; text-align: center; }
+    .nav-list li a { margin: 0; font-size: 1.2rem; }
+    
+
+    .carousel { 
+        height: 50vh; 
+        margin-top: 85px; 
+    }
+
+    .overlay { 
+        position: relative; /* Cambiado de absolute a relative */
+        padding: 20px;
+        width: 80%;       /* Ocupa el 80% del ancho del celular */
+        max-width: 300px; /* Para que no sea demasiado ancho */
+        height: auto;     /* Que el alto se ajuste al texto */
+        font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
     }
-
-    nav ul li a {
-        margin: 0 10px;
-        font-size: 14px;
-    }
-
-    /* 2. Carrusel */
-    .carousel {
-        height: 50vh; /* Más bajo en celular para que no ocupe toda la pantalla */
-        margin-top: 110px; /* Un poco más de espacio porque el nav ahora es más alto */
-    }
-
+    
     .overlay h2 {
-        font-size: 1.5rem;
-        text-align: center;
-    }
-
-    /* 3. Secciones y Títulos */
-    .section-title {
-        font-size: 1.8rem;
-        margin: 30px 0;
-    }
-
-    /* 4. Grillas (Servicios y Galería) */
-    .services-grid, .gallery-grid {
-        grid-template-columns: 1fr; /* Una sola columna en lugar de tres */
-        gap: 15px;
-        padding: 0 10%;
-    }
-
-    /* 5. Botón WhatsApp */
-    .whatsapp-float {
-        width: 55px;
-        height: 55px;
-        bottom: 20px;
-        right: 20px;
-        font-size: 28px;
-    }
-
-    /* 6. Formulario */
-    .contact form {
-        width: 90%;
-    }
-}
-
-/* Ajuste para tablets */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .services-grid, .gallery-grid {
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas en tablets */
+        margin: 0;
+        font-size: 1.2rem; /* Tamaño de letra más cómodo para móvil */
     }
 }
